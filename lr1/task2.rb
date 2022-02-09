@@ -4,7 +4,6 @@ language = STDIN.gets.chomp
 
 if language == "ruby"
     puts "Ты подлиза!"
-end
-if language != "ruby"
+else
     puts "Скоро будет Ruby!"
 end
