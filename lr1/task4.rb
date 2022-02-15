@@ -31,11 +31,26 @@ def is_min?(arr, i)
     return arr.min == arr[i]
 end
 
-def main()
-    puts "Введите индекс: "
-    idx = gets.chomp.to_i
+def swap(arr)
+    arr[arr.index(arr.max)], arr[arr.index(arr.min)] = arr[arr.index(arr.min)], arr[arr.index(arr.max)]
+    return arr
+end
 
-    puts is_min?(select_input(), idx)
+def main()
+    puts "Выберите задачу: 
+1. - Проверка минимума
+2. - Свап максимального и минимального элементов"
+
+    task = gets.chomp
+    case task
+    when '1'
+        puts "Индекс проверяемого элемента?"
+        idx = gets.chomp.to_i
+        puts is_min?(select_input(), idx)
+    when '2'
+        print swap(select_input())
+    end
+
 end
 
 main()
