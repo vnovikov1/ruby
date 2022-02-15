@@ -36,10 +36,15 @@ def swap(arr)
     return arr
 end
 
+def max_here?(arr, a, b)
+    return arr[a..b].include?(arr.max)
+end
+
 def main()
     puts "Выберите задачу: 
 1. - Проверка минимума
-2. - Свап максимального и минимального элементов"
+2. - Свап максимального и минимального элементов
+3. - Проверка максимального в промежутке a..b"
 
     task = gets.chomp
     case task
@@ -49,8 +54,11 @@ def main()
         puts is_min?(select_input(), idx)
     when '2'
         print swap(select_input())
+    when '3'
+        print "Введите (a, b) через пробел: "
+        a, b = gets.chomp.split.map(&:to_i)
+        puts max_here?(select_input(), a, b)
     end
-
 end
 
 main()
