@@ -40,11 +40,18 @@ def max_here?(arr, a, b)
     return arr[a..b].include?(arr.max)
 end
 
+def average(arr)
+    sum = 0
+    arr.map {|item| sum += item.abs}
+    return (sum.to_f / arr.size)
+end
+
 def main()
     puts "Выберите задачу: 
 1. - Проверка минимума
 2. - Свап максимального и минимального элементов
-3. - Проверка максимального в промежутке a..b"
+3. - Проверка максимального в промежутке a..b
+4. - Среднее арифметическое модулей элементов"
 
     task = gets.chomp
     case task
@@ -58,6 +65,8 @@ def main()
         print "Введите (a, b) через пробел: "
         a, b = gets.chomp.split.map(&:to_i)
         puts max_here?(select_input(), a, b)
+    when '4'
+        puts "Среднее арифметическое: #{average(select_input())}"
     end
 end
 
