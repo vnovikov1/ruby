@@ -46,12 +46,23 @@ def average(arr)
     return (sum.to_f / arr.size)
 end
 
+def average_max_list(arr)
+    sum = 0
+    arr.map{|item| sum += item}
+    average = sum.to_f / arr.size
+
+    new_arr = []
+    arr.map{|item| if item > average and item < arr.max then new_arr.push(item) end}
+    return new_arr
+end
+
 def main()
     puts "Выберите задачу: 
 1. - Проверка минимума
 2. - Свап максимального и минимального элементов
 3. - Проверка максимального в промежутке a..b
-4. - Среднее арифметическое модулей элементов"
+4. - Среднее арифметическое модулей элементов
+5. - Новый список с элементами большими, чем ср.ариф. исходного массива, но меньшими максимума"
 
     task = gets.chomp
     case task
@@ -67,6 +78,8 @@ def main()
         puts max_here?(select_input(), a, b)
     when '4'
         puts "Среднее арифметическое: #{average(select_input())}"
+    when '5'
+        puts "Новый список: #{average_max_list(select_input())}"
     end
 end
 
