@@ -26,3 +26,16 @@ def select_input()
         return arr
     end
 end
+
+def is_min?(arr, i)
+    return arr.min == arr[i]
+end
+
+def main()
+    puts "Введите индекс: "
+    idx = gets.chomp.to_i
+
+    puts is_min?(select_input(), idx)
+end
+
+main()
