@@ -1,16 +1,11 @@
-sentence = "sffff ada аа цуйц аааа dsda нннннqqqqffq "
-def counter(sentence)
-    results = []
-    acc = 0
-    sentence.each_char do |c|
-        if c.ord >= 1040 && c.ord <= 1103
-            acc += 1
-        else
-            results.append(acc)
-            acc = 0
-        end
-    end
-    results.max
+def min_number(str)
+    return str.scan(%r"[0-9]*").uniq.delete_if{|x| x == ""}.map{|x| x.to_i}.min
 end
 
-puts counter(sentence)
+def main
+    p "Введите строку: "
+    str = gets.chomp
+    p min_number(str)
+end
+
+main()
