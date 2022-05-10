@@ -9,11 +9,17 @@ def read_from_txt(path)
     arr
 end
 
+def write_to_txt(path, arr)
+    File.open("#{path}", "w") do |file|
+        arr.each do |e|
+            file.print e, ","
+        end
+        file.print "\n"
+    end
+end
+
 def print_arr(arr)
     arr.each do |obj|
         puts obj
     end
 end
-
-p print_arr(read_from_txt("deps.txt"))
-
