@@ -43,6 +43,13 @@ class Department
           "Обязанности в этом подразделении: #{@duties.join(", ")}"
         end
     end
+
+    def valid_phone
+        if (/^((\+7|7|8)+([0-9]){10})$/).match(phone) == nil
+            return false
+        end
+        true
+    end
 end
 
 dep_marketing = Department.new("Отдел маркетинга","89005002020")
@@ -70,3 +77,5 @@ dep_marketing.delete_duty
 
 p dep_marketing.to_s
 p dep_it.to_s
+
+p dep_it.valid_phone
