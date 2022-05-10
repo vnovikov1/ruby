@@ -9,3 +9,11 @@ def read_from_txt(path)
     arr
 end
 
+def print_arr(arr)
+    arr.each do |obj|
+        puts obj
+    end
+end
+
+p print_arr(read_from_txt("deps.txt"))
+
