@@ -2,8 +2,8 @@ class Department
     attr_accessor :name, :phone
 
     def initialize(name, phone, selected_duty = nil)
-        @name = name
-        @phone = phone
+        self.name= name
+        self.phone= Department.correct_phone_number(phone)
         @duties = []
         @selected_duty = selected_duty
     end
@@ -11,9 +11,9 @@ class Department
     def to_s
         if !@duties.empty?
             duty = @duties.join(', ')
-            return "Подразделение - #{@name}, телефон - #{@phone}, Обязанности: #{duty}"
+            return "Подразделение - #{self.name}, телефон - #{self.phone}, Обязанности: #{duty}"
         end
-        return "Подразделение - #{@name}, телефон - #{@phone}"
+        return "Подразделение - #{self.name}, телефон - #{self.phone}"
     end
 
     def add_duty(duty)
@@ -44,10 +44,19 @@ class Department
         end
     end
 
-    def valid_phone
+    def self.valid_phone?(phone)
         if (/^((\+7|7|8)+([0-9]){10})$/).match(phone) == nil
             return false
         end
         true
+    end
+
+    def self.correct_phone_number(phone)
+        if self.valid_phone?(phone)
+            nums = phone.chars.map{|symb| symb if symb =~ /[0-9]/}.join
+            return "7-" + nums[1..3] + "-" + nums[4..]
+        else
+            raise ArgumentError ,"Invalid phone number."
+        end
     end
 end
